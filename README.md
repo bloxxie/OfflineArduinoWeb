@@ -36,7 +36,7 @@ An offline, local web-based Arduino circuit simulator. Write and test Arduino C 
 
 1. Navigate to the project directory:
 ```bash
-cd /home/san/Projects/Niche\ Projects/ArduinoOfflineServer
+cd /ArduinoOfflineServer
 ```
 
 2. Install dependencies:
