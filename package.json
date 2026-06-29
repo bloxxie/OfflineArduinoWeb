@@ -1,0 +1,24 @@
+{
+  "name": "arduino-offline-server",
+  "version": "1.0.0",
+  "description": "An offline Arduino circuit simulator with web interface",
+  "main": "server/index.js",
+  "scripts": {
+    "build": "esbuild client/src/app.js --bundle --outfile=client/dist/bundle.js --platform=browser --format=esm",
+    "start": "npm run build && node server/index.js",
+    "dev": "PORT=3000 nodemon --exec \"npm run build && node server/index.js\"",
+    "debug": "node server/index.js"
+  },
+  "keywords": ["arduino", "simulator", "offline", "web"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "avr8js": "^0.21.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "esbuild": "^0.19.0"
+  }
+}

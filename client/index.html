@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arduino Offline Simulator</title>
+  <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Arduino Offline Simulator</h1>
+      <p>Simulate Arduino C code without hardware</p>
+    </header>
+
+    <div class="main-content">
+      <!-- Code Editor Section -->
+      <div class="editor-section">
+        <div class="section-header">
+          <h2>Code Editor</h2>
+          <div class="controls">
+            <button id="newTabBtn" class="btn btn-secondary">+ New Tab</button>
+            <button id="openFileBtn" class="btn btn-secondary">Open File</button>
+            <button id="runBtn" class="btn btn-primary">▶ Compile & Run</button>
+            <button id="formatBtn" class="btn btn-secondary">Format</button>
+            <button id="stopBtn" class="btn btn-secondary">■ Stop</button>
+            <button id="clearBtn" class="btn btn-secondary">Clear</button>
+          </div>
+        </div>
+        <div id="tabBar" class="tab-bar"></div>
+        <input id="fileInput" type="file" accept=".ino,.txt,.c,.cpp,.h" hidden>
+        <textarea id="codeEditor" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Write your Arduino code here...">void setup() {
+  Serial.begin(9600);
+  for (int pin = 0; pin <= 13; pin++) {
+    pinMode(pin, OUTPUT);
+    digitalWrite(pin, LOW);
+  }
+}
+
+void loop() {
+  // chase up from 0 to 13
+  for (int pin = 0; pin <= 13; pin++) {
+    digitalWrite(pin, HIGH);
+    delay(100);
+    digitalWrite(pin, LOW);
+  }
+
+  // chase back from 13 to 0
+  for (int pin = 13; pin >= 0; pin--) {
+    digitalWrite(pin, HIGH);
+    delay(100);
+    digitalWrite(pin, LOW);
+  }
+}
+</textarea>
+        <div class="editor-help">Tab to indent, Shift+Tab to unindent, Enter to preserve indentation, Ctrl+Enter to compile, Ctrl+S to format.</div>
+      </div>
+
+      <!-- Output Section -->
+      <div class="output-section">
+        <div class="section-header">
+          <h2>Serial Monitor</h2>
+          <button id="clearSerialBtn" class="btn btn-small">Clear Output</button>
+        </div>
+        <div id="serialOutput" class="serial-monitor"></div>
+      </div>
+    </div>
+
+    <!-- Pin Status Section -->
+    <div class="pins-section">
+      <div class="section-header">
+        <h2>Pin Status</h2>
+      </div>
+      <div class="pins-grid">
+        <div class="pins-column">
+          <h3>Digital Pins</h3>
+          <div id="digitalPins" class="pins-list"></div>
+        </div>
+        <div class="pins-column">
+          <h3>Analog Pins</h3>
+          <div id="analogPins" class="pins-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Status Bar -->
+    <div id="statusBar" class="status-bar">
+      Ready
+    </div>
+  </div>
+
+  <script type="module" src="dist/bundle.js"></script>
+</body>
+</html>
